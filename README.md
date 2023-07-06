@@ -9,13 +9,15 @@ Checkout respective lib for other distro and install it.
 
 We can add entry to right click context menu and copy the path for files/folder.
 
-![image](https://github.com/san-gg/ContextMenuCopyPath/assets/96869607/fea140d5-be5f-4057-81c5-fcae5d9e322e)
+![right_click_context_menu_image](https://github.com/san-gg/ContextMenuCopyPath/assets/96869607/fea140d5-be5f-4057-81c5-fcae5d9e322e)
 
 For windows run following command.
 ```
 reg add "HKEY_CLASSES_ROOT\*\shell\Copy Path\command" /t REG_SZ /d "<path of the executable> \"%1\""
 ```
 eg: reg add "HKEY_CLASSES_ROOT\*\shell\Copy Path\command" /t REG_SZ /d "C:\my_programs\ContextCopyPath.exe \\"%1\\""
+
+or simply run msi package insaller which is attached in [release](https://github.com/san-gg/ContextMenuCopyPath/releases/tag/v1.0)
 
 For Linux refer following links for Ubuntu: -
 
