@@ -1,4 +1,3 @@
-#include <iostream>
 #include <Windows.h>
 
 int CopyToClipboard(const char * path) {
