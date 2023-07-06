@@ -5,16 +5,23 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("ContextCopyPath")
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+if (WIN32)
 	set(BUILD_CODE "WinContextCopy.cpp")
 	set(OPTIMIZE_FLAG "/O2")
-else ()
+elseif(UNIX)
 	set(BUILD_CODE "LinuxContextCopy.cpp")
 	set(OPTIMIZE_FLAG "-O3")
+	FIND_PACKAGE( X11 REQUIRED )
+	include(CheckIncludeFiles)
+	check_include_files(xcb/xcb.h HAVE_XCB_XLIB_H)
 endif()
 
 # Add source to this project's executable.
 add_executable (ContextCopyPath "ContextCopyPath.cpp"  ${BUILD_CODE})
+
+if (HAVE_XCB_XLIB_H)
+	target_link_libraries(ContextCopyPath xcb)
+endif()
 
 # set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE ${OPTIMIZE_FLAG})
